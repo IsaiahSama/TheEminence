@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://bndqmyc8402g"]
 
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_2orx4"]
+[ext_resource type="Script" path="res://main.gd" id="1_2orx4"]
 [ext_resource type="PackedScene" uid="uid://bachkvoi41w6" path="res://scenes/player.tscn" id="1_vetca"]
 [ext_resource type="PackedScene" uid="uid://bgq7wksvwmlc7" path="res://scenes/bullet.tscn" id="2_7qodu"]
 [ext_resource type="PackedScene" uid="uid://b1teaef1fa1gs" path="res://scenes/enemy.tscn" id="3_lr2wg"]
 [ext_resource type="PackedScene" uid="uid://dnv2pwkmnw5yu" path="res://scenes/miniboss.tscn" id="5_67q3j"]
-[ext_resource type="Script" path="res://scenes/spawner.gd" id="6_qysuh"]
+[ext_resource type="Script" path="res://spawner.gd" id="6_qysuh"]
 
 [sub_resource type="Gradient" id="Gradient_05qt1"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
