@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bachkvoi41w6"]
+[gd_scene load_steps=22 format=3 uid="uid://bachkvoi41w6"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_khmp6"]
 [ext_resource type="Texture2D" uid="uid://c1wlecw1478l" path="res://assets/player.png" id="1_pkma8"]
@@ -9,6 +9,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_arltn"]
 atlas = ExtResource("1_pkma8")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlihk"]
+atlas = ExtResource("1_pkma8")
+region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w50g4"]
 atlas = ExtResource("1_pkma8")
@@ -29,6 +33,40 @@ animations = [{
 "texture": SubResource("AtlasTexture_arltn")
 }, {
 "duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arltn")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"damage",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlihk")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlihk")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arltn")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_w50g4")
 }, {
 "duration": 1.0,
@@ -37,7 +75,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kjbnt")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
