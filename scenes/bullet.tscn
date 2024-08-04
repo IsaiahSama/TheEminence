@@ -160,6 +160,7 @@ script = SubResource("GDScript_xo4gi")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 show_behind_parent = true
