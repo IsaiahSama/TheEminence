@@ -1,7 +1,43 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgq7wksvwmlc7"]
+[gd_scene load_steps=20 format=3 uid="uid://bgq7wksvwmlc7"]
 
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_2kbow"]
 [ext_resource type="Texture2D" uid="uid://dy7f32ugd4b85" path="res://assets/Weapons/projectile.png" id="1_13m6f"]
-[ext_resource type="Script" path="res://scenes/bullet.gd" id="1_tra1a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lx6q"]
+atlas = ExtResource("1_13m6f")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql22n"]
+atlas = ExtResource("1_13m6f")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjdne"]
+atlas = ExtResource("1_13m6f")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj4pc"]
+atlas = ExtResource("1_13m6f")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo14k"]
+atlas = ExtResource("1_13m6f")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8334"]
+atlas = ExtResource("1_13m6f")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpp7e"]
+atlas = ExtResource("1_13m6f")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwusa"]
+atlas = ExtResource("1_13m6f")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1l77v"]
+atlas = ExtResource("1_13m6f")
+region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ub2v"]
 atlas = ExtResource("1_13m6f")
@@ -23,16 +59,48 @@ region = Rect2(48, 0, 16, 16)
 atlas = ExtResource("1_13m6f")
 region = Rect2(64, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nwusa"]
-atlas = ExtResource("1_13m6f")
-region = Rect2(80, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1l77v"]
-atlas = ExtResource("1_13m6f")
-region = Rect2(96, 0, 16, 16)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_25ay8"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lx6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql22n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjdne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nj4pc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vo14k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8334")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpp7e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwusa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1l77v")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6ub2v")
@@ -48,26 +116,52 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bxy44")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nwusa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1l77v")
 }],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"enemy_hit",
-"speed": 5.0
+"loop": false,
+"name": &"shot",
+"speed": 15.0
 }]
 
-[node name="Bullet" type="Node2D"]
-script = ExtResource("1_tra1a")
+[sub_resource type="GDScript" id="GDScript_xo4gi"]
+resource_name = "BulletSprite"
+script/source = "extends AnimatedSprite2D
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	#frame_changed.connect(_on_frame_changed)
+	animation_finished.connect(_on_animation_finished)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+#func _on_frame_changed():
+	#if frame == sprite_frames.get_frame_count(\"shot\") - 1:
+		#frame = 4
+		#stop()
+		
+func _on_animation_finished():
+	stop()
+	frame = 4
+	
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xbexe"]
+radius = 8.0
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_2kbow")
+
+[node name="BulletSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_25ay8")
+animation = &"hit"
+script = SubResource("GDScript_xo4gi")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+show_behind_parent = true
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_xbexe")

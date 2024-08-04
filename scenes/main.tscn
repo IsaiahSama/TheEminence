@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bndqmyc8402g"]
+[gd_scene load_steps=7 format=3 uid="uid://bndqmyc8402g"]
 
 [ext_resource type="PackedScene" uid="uid://bachkvoi41w6" path="res://scenes/player.tscn" id="1_vetca"]
 [ext_resource type="PackedScene" uid="uid://bgq7wksvwmlc7" path="res://scenes/bullet.tscn" id="2_7qodu"]
+[ext_resource type="PackedScene" uid="uid://b1teaef1fa1gs" path="res://scenes/enemy.tscn" id="3_lr2wg"]
+
+[sub_resource type="Gradient" id="Gradient_05qt1"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6tltt"]
+gradient = SubResource("Gradient_05qt1")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlqyg"]
+size = Vector2(66, 63.8889)
 
 [node name="Main" type="Node2D"]
 
@@ -10,3 +20,19 @@ position = Vector2(208, 248)
 scale = Vector2(2, 2)
 
 [node name="Bullet" parent="." instance=ExtResource("2_7qodu")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(810, 286)
+scale = Vector2(1, 5.04)
+texture = SubResource("GradientTexture2D_6tltt")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("RectangleShape2D_dlqyg")
+
+[node name="Enemy" parent="." instance=ExtResource("3_lr2wg")]
+position = Vector2(510, 262)
+scale = Vector2(4, 4)
+
+[connection signal="area_entered" from="Sprite2D/Area2D" to="Bullet" method="_on_area_2d_area_entered"]
