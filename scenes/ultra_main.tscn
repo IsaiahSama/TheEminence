@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1qudhwb7qmvq"]
+
+[ext_resource type="Script" path="res://scripts/ultra_main.gd" id="1_up5bj"]
+[ext_resource type="PackedScene" uid="uid://bachkvoi41w6" path="res://scenes/player.tscn" id="2_38ilr"]
+[ext_resource type="PackedScene" uid="uid://b7ceibgxmdy34" path="res://scenes/battleground.tscn" id="3_72s5v"]
+
+[node name="UltraMain" type="Node2D"]
+script = ExtResource("1_up5bj")
+metadata/_edit_vertical_guides_ = [1125.0]
+
+[node name="Player" parent="." instance=ExtResource("2_38ilr")]
+position = Vector2(555, 313)
+
+[node name="enemy_spawn" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="miniboss_timer" type="Timer" parent="."]
+
+[node name="Battleground" parent="." instance=ExtResource("3_72s5v")]
+z_index = -1
+position = Vector2(-2, -1)
+
+[connection signal="timeout" from="enemy_spawn" to="." method="_on_enemy_spawn_timeout"]
+[connection signal="timeout" from="miniboss_timer" to="." method="_on_miniboss_timer_timeout"]
