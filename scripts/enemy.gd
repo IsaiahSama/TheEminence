@@ -5,6 +5,7 @@ var type = 0
 var speed = 0
 var damage = 0
 var health = 0
+var knockback = 0
 var animArray = ["base","tank","energy","base_damage","tank_damage","energy_damage","base_death","tank_death","energy_death"]
 var player_in_contact = false
 
@@ -21,16 +22,19 @@ func _ready():
 		speed = 125
 		damage = 1
 		health = 3
+		knockback = 1
 	elif 0.7 <= typeGen && typeGen < 0.9:
 		type = TANK_ENEMY
 		speed = 60
 		damage = 2
 		health = 4
+		knockback = 2
 	else:
 		type = ENERGY_ENEMY
 		speed = 125
 		damage = 1
 		health = 2
+		knockback = 1
 	$Sprite.play(animArray[type])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,7 +42,7 @@ func _process(delta):
 	if not player.dead:
 		if player_in_contact:
 			var direction = (player.position - global_position).normalized()
-			player.hurt(1,1,direction.angle())
+			player.hurt(damage,knockback,direction.angle())
 			
 		if health <= 0:
 			$Sprite.play(animArray[type+6])
@@ -66,7 +70,7 @@ func _on_area_2d_area_exited(area):
 
 
 func hurt():
-	health -= 1
+	health -= player.power
 	$Sprite.play(animArray[type+3])
 	await $Sprite.animation_finished
 	$Sprite.play(animArray[type])

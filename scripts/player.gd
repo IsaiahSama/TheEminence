@@ -15,7 +15,6 @@ func _ready():
 	add_child(timer)
 	timer.wait_time = 0.5
 	timer.one_shot = false
-	#timer.timeout.connect(_on_timer_timeout)
 
 func _process(delta):
 	var velocity = Vector2.ZERO
@@ -42,7 +41,7 @@ func death():
 	$PlayerSprite.play("death")
 	timer.start()
 	await timer.timeout
-	#end game
+	#TODO: End Game
 
 func hurt(damage,knockback,direction):
 	if not damaged and not dead:
