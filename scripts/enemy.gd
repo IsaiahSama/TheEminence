@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var player = get_node("/root/Main/Player")
+@onready var player = get_node("/root/UltraMain/Player")
 var type = 0
 var speed = 0
 var damage = 0
@@ -11,10 +11,15 @@ var player_in_contact = false
 
 enum {BASE_ENEMY, TANK_ENEMY, ENERGY_ENEMY}
 
+var locations = [Vector2(540, 20), Vector2(0, 318), Vector2(1120, 318), Vector2(540, 626)]
+
+var rng = RandomNumberGenerator.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Area2D.area_entered.connect(_on_area_2d_area_entered)
 	$Area2D.area_exited.connect(_on_area_2d_area_exited)
+	position = locations[rng.randi_range(0, len(locations) - 1)]
 	var typeGen = 0.7 #randf_range(0,1)
 	
 	if 0 <= typeGen && typeGen < 0.7:

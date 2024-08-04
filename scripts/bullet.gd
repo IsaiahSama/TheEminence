@@ -6,7 +6,7 @@ func _ready():
 	$Area2D.area_entered.connect(_on_area_2d_area_entered)
 	$BulletSprite.animation_finished.connect(_on_animation_finished)
 	
-	var blaster_sprite_path = "/root/Main/Player/PlayerSprite/BlasterSprite"
+	var blaster_sprite_path = "/root/UltraMain/Player/PlayerSprite/BlasterSprite"
 	var blaster_sprite = get_node_or_null(blaster_sprite_path)
 	rotation = blaster_sprite.rotation - (PI/2)
 	position = blaster_sprite.global_position

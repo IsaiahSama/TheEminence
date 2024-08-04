@@ -71,6 +71,3 @@ func playerLook():
 		frameChange.emit(0)
 	else:
 		frameChange.emit(2)
-		
-func _on_area_2d_area_entered(area):
-	pass
