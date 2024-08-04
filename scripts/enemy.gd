@@ -19,7 +19,7 @@ func _ready():
 	$Area2D.area_entered.connect(_on_area_2d_area_entered)
 	$Area2D.area_exited.connect(_on_area_2d_area_exited)
 	position = locations[rng.randi_range(0, len(locations) - 1)]
-	var typeGen = 0.7 #randf_range(0,1)
+	var typeGen = randf_range(0,1)
 	
 	if 0 <= typeGen && typeGen < 0.7:
 		type = BASE_ENEMY
