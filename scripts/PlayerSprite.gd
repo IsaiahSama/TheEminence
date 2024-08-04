@@ -2,7 +2,7 @@ extends AnimatedSprite2D
 
 @onready var weapon = $BlasterSprite
 var bullet = preload("res://scenes/bullet.tscn")
-var fire_rate = 4.0
+var fire_rate = 3.0
 var cooldown = 0.0
 
 # Called when the node enters the scene tree for the first time.
