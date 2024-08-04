@@ -8,6 +8,8 @@ var health = 0
 var animArray = ["base","tank","energy","base_damage","tank_damage","energy_damage","base_death","tank_death","energy_death"]
 var player_in_contact = false
 
+enum {BASE_ENEMY, TANK_ENEMY, ENERGY_ENEMY}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Area2D.area_entered.connect(_on_area_2d_area_entered)
@@ -15,17 +17,17 @@ func _ready():
 	var typeGen = 0.7 #randf_range(0,1)
 	
 	if 0 <= typeGen && typeGen < 0.7:
-		type = 0
+		type = BASE_ENEMY
 		speed = 125
 		damage = 1
 		health = 3
 	elif 0.7 <= typeGen && typeGen < 0.9:
-		type = 1
+		type = TANK_ENEMY
 		speed = 60
 		damage = 2
 		health = 4
 	else:
-		type = 2
+		type = ENERGY_ENEMY
 		speed = 125
 		damage = 1
 		health = 2
