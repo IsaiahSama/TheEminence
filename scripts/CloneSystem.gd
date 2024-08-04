@@ -16,17 +16,17 @@ func _ready():
 
 func _cloneSystem(delta):
 	# Table of Options and Build Values 
-	var Hlow: int = 5
-	var Hmed: int = 10
-	var Hhigh: int = 15
+	var Hlow: int = 3
+	var Hmed: int = 4
+	var Hhigh: int = 5
 
-	var Rlow: int = 5
-	var Rmed: int = 10
-	var Rhigh: int = 15
+	var Rlow: int = 1
+	var Rmed: int = 2
+	var Rhigh: int = 3
 
-	var Plow: int = 5
-	var Pmed: int = 10
-	var Phigh: int = 15
+	var Plow: int = 1
+	var Pmed: int = 2
+	var Phigh: int = 3
 
 	var HSelect = 0
 	var RSelect = 0
