@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://u3cvys4cunxw"]
+
+[ext_resource type="Script" path="res://scenes/options_menu.gd" id="1_hdom2"]
+[ext_resource type="Script" path="res://scenes/volume_slider.gd" id="2_5nx3d"]
+[ext_resource type="AudioStream" uid="uid://ddi1i1jpk1y7n" path="res://assets/Audio/menu.mp3" id="3_k0gmo"]
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 3.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hdom2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 271.0
+offset_right = 639.0
+offset_bottom = 349.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="volume_label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "VOLUME"
+horizontal_alignment = 1
+
+[node name="volume_slider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("2_5nx3d")
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "BACK TO MENU"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_k0gmo")
+autoplay = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
