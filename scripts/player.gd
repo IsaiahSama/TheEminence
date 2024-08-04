@@ -7,34 +7,55 @@ var health = 5
 var power = 3
 var range = 3
 var timer = Timer.new()
+var damaged = false
+var dead = false
 
 
 func _ready():
 	add_child(timer)
 	timer.wait_time = 0.5
 	timer.one_shot = false
+	#timer.timeout.connect(_on_timer_timeout)
 
 func _process(delta):
 	var velocity = Vector2.ZERO
 	
-	if Input.is_action_pressed("ui_up"):
-		velocity += Vector2.UP * speed
-	if Input.is_action_pressed("ui_down"):
-		velocity += Vector2.DOWN * speed
-	if Input.is_action_pressed("ui_left"):
-		velocity += Vector2.LEFT * speed
-	if Input.is_action_pressed("ui_right"):
-		velocity += Vector2.RIGHT * speed
-		
-	position += velocity * delta
-	playerLook()
+	if not dead:
+		if Input.is_action_pressed("ui_up"):
+			velocity += Vector2.UP * speed
+		if Input.is_action_pressed("ui_down"):
+			velocity += Vector2.DOWN * speed
+		if Input.is_action_pressed("ui_left"):
+			velocity += Vector2.LEFT * speed
+		if Input.is_action_pressed("ui_right"):
+			velocity += Vector2.RIGHT * speed
+			
+		position += velocity * delta
+		if not damaged: playerLook()
+	
+	if health <= 0:
+		death()
 	
 	
+func death():
+	dead = true
+	$PlayerSprite.play("death")
+	timer.start()
+	await timer.timeout
+	#end game
 
 func hurt(damage,knockback,direction):
-	health -= damage
-	print(health)
-	position += Vector2.RIGHT.rotated(direction) * (70*knockback)
+	if not damaged and not dead:
+		health -= damage
+		print(health)
+		position += Vector2.RIGHT.rotated(direction) * (70*knockback)
+		$PlayerSprite.play("damage")
+		timer.start()
+		damaged = true
+		await timer.timeout
+		damaged = false
+		$PlayerSprite.play("default")
+	
 
 func playerLook():
 	var facingAngle = position.angle_to_point(get_viewport().get_mouse_position())
