@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnv2pwkmnw5yu"]
+
+[ext_resource type="Script" path="res://scenes/miniboss.gd" id="1_2sa47"]
+[ext_resource type="Texture2D" uid="uid://bulcdqvjbmr7x" path="res://assets/miniboss.png" id="2_w0hj4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkppx"]
+atlas = ExtResource("2_w0hj4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2erl"]
+atlas = ExtResource("2_w0hj4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3oy5f"]
+atlas = ExtResource("2_w0hj4")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwqn7"]
+atlas = ExtResource("2_w0hj4")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qt7v7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkppx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2erl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3oy5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwqn7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_411bk"]
+radius = 12.0
+height = 34.0
+
+[node name="Miniboss" type="Node2D"]
+script = ExtResource("1_2sa47")
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qt7v7")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 1)
+shape = SubResource("CapsuleShape2D_411bk")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
