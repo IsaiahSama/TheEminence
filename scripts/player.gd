@@ -3,13 +3,13 @@ extends Node2D
 signal frameChange(newFrame)
 
 var speed = 400
-var angularSpeed = 1000
+var health = 5
+var power = 3
+var range = 3
 
 
 func _ready():
 	pass
-
-
 
 func _process(delta):
 	var velocity = Vector2.ZERO

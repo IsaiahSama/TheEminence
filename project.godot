@@ -64,6 +64,10 @@ leftClick={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_2="Bullet"
+
 [rendering]
 
 renderer/rendering_method="mobile"
