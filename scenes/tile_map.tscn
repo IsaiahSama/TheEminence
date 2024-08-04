@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgf4823rlxvfa"]
+
+[ext_resource type="Texture2D" uid="uid://b0aslp2mhfapy" path="res://assets/tiles.png" id="1_pamos"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3i1s5"]
+texture = ExtResource("1_pamos")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_3rusn"]
+sources/0 = SubResource("TileSetAtlasSource_3i1s5")
+
+[node name="TileMap" type="TileMap"]
+tile_set = SubResource("TileSet_3rusn")
+format = 2

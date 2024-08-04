@@ -1,10 +1,10 @@
 [gd_scene load_steps=21 format=3 uid="uid://bachkvoi41w6"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_khmp6"]
 [ext_resource type="Texture2D" uid="uid://c1wlecw1478l" path="res://assets/player.png" id="1_pkma8"]
-[ext_resource type="Script" path="res://scripts/PlayerSprite.gd" id="3_7p5gm"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_wrdmg"]
+[ext_resource type="Script" path="res://scenes/PlayerSprite.gd" id="3_d4y8q"]
 [ext_resource type="Texture2D" uid="uid://k287vw31ac0i" path="res://assets/Weapons/blaster.png" id="4_8ott2"]
-[ext_resource type="Script" path="res://scripts/BlasterSprite.gd" id="5_cmlvg"]
+[ext_resource type="Script" path="res://scenes/BlasterSprite.gd" id="5_i5fo1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_arltn"]
 atlas = ExtResource("1_pkma8")
@@ -111,21 +111,21 @@ radius = 12.0
 height = 34.0
 
 [node name="Player" type="Node2D"]
-script = ExtResource("1_khmp6")
+script = ExtResource("1_wrdmg")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qt7v7")
-script = ExtResource("3_7p5gm")
+script = ExtResource("3_d4y8q")
 
 [node name="BlasterSprite" type="AnimatedSprite2D" parent="PlayerSprite"]
 texture_filter = 1
 position = Vector2(0, -12.5)
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.625, 0.625)
 sprite_frames = SubResource("SpriteFrames_q6e77")
 frame_progress = 0.369156
-script = ExtResource("5_cmlvg")
+script = ExtResource("5_i5fo1")
 
 [node name="Area2D" type="Area2D" parent="."]
 
