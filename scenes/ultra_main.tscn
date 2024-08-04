@@ -33,5 +33,7 @@ script = ExtResource("4_mof7b")
 stream = ExtResource("5_ggk72")
 autoplay = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
 [connection signal="timeout" from="enemy_spawn" to="." method="_on_enemy_spawn_timeout"]
 [connection signal="timeout" from="miniboss_timer" to="." method="_on_miniboss_timer_timeout"]
