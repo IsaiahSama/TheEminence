@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b1teaef1fa1gs"]
+[gd_scene load_steps=20 format=3 uid="uid://b1teaef1fa1gs"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_laxy5"]
 [ext_resource type="Texture2D" uid="uid://cjb7lv7lgr788" path="res://assets/enemies.png" id="1_s2014"]
@@ -19,6 +19,10 @@ region = Rect2(32, 0, 16, 16)
 atlas = ExtResource("1_s2014")
 region = Rect2(48, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_73km4"]
+atlas = ExtResource("1_s2014")
+region = Rect2(64, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_4bd4c"]
 atlas = ExtResource("1_s2014")
 region = Rect2(0, 32, 16, 16)
@@ -35,6 +39,10 @@ region = Rect2(32, 32, 16, 16)
 atlas = ExtResource("1_s2014")
 region = Rect2(48, 32, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3s43"]
+atlas = ExtResource("1_s2014")
+region = Rect2(64, 32, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_hxmym"]
 atlas = ExtResource("1_s2014")
 region = Rect2(0, 16, 16, 16)
@@ -50,6 +58,10 @@ region = Rect2(32, 16, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_t135p"]
 atlas = ExtResource("1_s2014")
 region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ge1c"]
+atlas = ExtResource("1_s2014")
+region = Rect2(64, 16, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1pxe1"]
 animations = [{
@@ -77,6 +89,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_73km4")
+}],
+"loop": false,
+"name": &"base_death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_4bd4c")
 }, {
 "duration": 1.0,
@@ -95,6 +115,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"energy_damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3s43")
+}],
+"loop": false,
+"name": &"energy_death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -118,6 +146,14 @@ animations = [{
 "loop": false,
 "name": &"tank_damage",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ge1c")
+}],
+"loop": false,
+"name": &"tank_death",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iq5vg"]
@@ -129,7 +165,7 @@ script = ExtResource("1_laxy5")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_1pxe1")
-animation = &"tank_damage"
+animation = &"base_death"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 3
