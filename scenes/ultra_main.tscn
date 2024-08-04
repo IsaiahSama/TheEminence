@@ -17,6 +17,8 @@ wait_time = 3.0
 autostart = true
 
 [node name="miniboss_timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
 
 [node name="Battleground" parent="." instance=ExtResource("3_72s5v")]
 z_index = -1
