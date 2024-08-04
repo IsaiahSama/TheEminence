@@ -6,10 +6,13 @@ var speed = 400
 var health = 5
 var power = 3
 var range = 3
+var timer = Timer.new()
 
 
 func _ready():
-	pass
+	add_child(timer)
+	timer.wait_time = 0.5
+	timer.one_shot = false
 
 func _process(delta):
 	var velocity = Vector2.ZERO
@@ -31,7 +34,7 @@ func _process(delta):
 func hurt(damage,knockback,direction):
 	health -= damage
 	print(health)
-	position += Vector2.RIGHT.rotated(direction) * 50
+	position += Vector2.RIGHT.rotated(direction) * (70*knockback)
 
 func playerLook():
 	var facingAngle = position.angle_to_point(get_viewport().get_mouse_position())
