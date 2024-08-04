@@ -24,7 +24,16 @@ func _process(delta):
 		velocity += Vector2.RIGHT * speed
 		
 	position += velocity * delta
+	playerLook()
 	
+	
+
+func hurt(damage,knockback,direction):
+	health -= damage
+	print(health)
+	position += Vector2.RIGHT.rotated(direction) * 50
+
+func playerLook():
 	var facingAngle = position.angle_to_point(get_viewport().get_mouse_position())
 	if facingAngle < 0:
 		facingAngle = (2*PI) + facingAngle
@@ -39,3 +48,6 @@ func _process(delta):
 		frameChange.emit(0)
 	else:
 		frameChange.emit(2)
+		
+func _on_area_2d_area_entered(area):
+	pass

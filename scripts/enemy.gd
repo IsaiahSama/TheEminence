@@ -19,7 +19,7 @@ func _ready():
 		health = 3
 	elif 0.7 <= typeGen && typeGen < 0.9:
 		type = 1
-		speed = 75
+		speed = 60
 		damage = 2
 		health = 4
 	else:
@@ -42,7 +42,15 @@ func _process(delta):
 		position += direction * speed * delta
 	
 func _on_area_2d_area_entered(area):
-	hurt()
+	if area.collision_layer == 2:
+		hurt()
+	if area.collision_layer == 1:
+		#Parent is Player
+		var player = area.get_parent()
+		var direction = (player.position - global_position).normalized()
+
+		
+		player.hurt(1,1,direction.angle())
 
 func hurt():
 	health -= 1
