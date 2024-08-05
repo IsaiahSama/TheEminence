@@ -1,12 +1,12 @@
-extends Node2D
+extends Camera2D
 
+@onready var player = get_node("/root/UltraMain/Player")
 
 # Called when the node enters the scene tree for the first time.
-var rng = RandomNumberGenerator.new()
-
 func _ready():
-	get_node("Body").self_modulate = Color8(rng.randi_range(0, 255),rng.randi_range(0, 255), rng.randi_range(0, 255))
+	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	self.global_position = player.global_position
