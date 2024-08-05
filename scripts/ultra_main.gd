@@ -1,6 +1,7 @@
 extends Node2D
 
 var enemy = preload("res://scenes/enemy.tscn")
+var miniboss = preload("res://scenes/miniboss.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,4 +19,11 @@ func _on_enemy_spawn_timeout():
 
 
 func _on_miniboss_timer_timeout():
-	pass # Replace with function body.
+	var option1 = miniboss.instantiate()
+	var option2 = miniboss.instantiate()
+	
+	option1.position = Vector2(0, 318)
+	option2.position = Vector2(1120, 318)
+	
+	get_node(".").add_child(option1)
+	get_node(".").add_child(option2)
