@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://bachkvoi41w6"]
+[gd_scene load_steps=23 format=3 uid="uid://bachkvoi41w6"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_khmp6"]
 [ext_resource type="Texture2D" uid="uid://c1wlecw1478l" path="res://assets/player.png" id="1_pkma8"]
 [ext_resource type="Script" path="res://scripts/PlayerSprite.gd" id="3_7p5gm"]
 [ext_resource type="Texture2D" uid="uid://k287vw31ac0i" path="res://assets/Weapons/blaster.png" id="4_8ott2"]
 [ext_resource type="Script" path="res://scripts/BlasterSprite.gd" id="5_cmlvg"]
+[ext_resource type="PackedScene" uid="uid://catkf406knd86" path="res://scenes/hud.tscn" id="6_lgrek"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_arltn"]
 atlas = ExtResource("1_pkma8")
@@ -171,6 +172,8 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, 1)
 shape = SubResource("CapsuleShape2D_411bk")
+
+[node name="HUD" parent="." instance=ExtResource("6_lgrek")]
 
 [connection signal="frameChange" from="." to="PlayerSprite" method="_on_player_frame_change"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

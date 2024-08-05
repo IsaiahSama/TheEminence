@@ -3,7 +3,8 @@ extends Node2D
 signal frameChange(newFrame)
 
 var speed = 400
-var health = 5
+var max_health = 5
+var health = max_health
 var power = 3
 var range = 3
 var timer = Timer.new()
@@ -16,6 +17,7 @@ func _ready():
 	timer.wait_time = 0.5
 	timer.one_shot = false
 	#timer.timeout.connect(_on_timer_timeout)
+	$"HUD".set_life(max_health)
 
 func _process(delta):
 	var velocity = Vector2.ZERO
@@ -48,6 +50,7 @@ func hurt(damage,knockback,direction):
 	if not damaged and not dead:
 		health -= damage
 		print(health)
+		$"HUD".update_life(health)
 		position += Vector2.RIGHT.rotated(direction) * (70*knockback)
 		$PlayerSprite.play("damage")
 		timer.start()

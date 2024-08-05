@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://df1y0br3avdr6"]
+
+[ext_resource type="Texture2D" uid="uid://cywf7gj8c6o6e" path="res://assets/UI/heart.png" id="1_62fsp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fovxe"]
+atlas = ExtResource("1_62fsp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysac8"]
+atlas = ExtResource("1_62fsp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4dhq"]
+atlas = ExtResource("1_62fsp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcah3"]
+atlas = ExtResource("1_62fsp")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_av8y7"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_fovxe")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_ysac8")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_a4dhq")
+}],
+"loop": true,
+"name": &"Alive",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcah3")
+}],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}]
+
+[node name="Heart" type="Node2D"]
+
+[node name="heart" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_av8y7")
+animation = &"Alive"
+autoplay = "Alive"
