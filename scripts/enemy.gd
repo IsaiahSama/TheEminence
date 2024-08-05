@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var player = get_node("/root/UltraMain/Player")
+var bullet = preload("res://scenes/enemybullet.tscn")
 var type = 0
 var speed = 0
 var damage = 0
@@ -20,7 +21,7 @@ func _ready():
 	$Area2D.area_entered.connect(_on_area_2d_area_entered)
 	$Area2D.area_exited.connect(_on_area_2d_area_exited)
 	position = locations[rng.randi_range(0, len(locations) - 1)]
-	var typeGen = 0.7 #randf_range(0,1)
+	var typeGen = 0.9 #randf_range(0,1)
 	
 	if 0 <= typeGen && typeGen < 0.7:
 		type = BASE_ENEMY
@@ -58,6 +59,11 @@ func _process(delta):
 			
 			direction = direction.normalized()
 			position += direction * speed * delta
+			
+		if type == ENERGY_ENEMY:
+			if Input.is_action_just_pressed("leftClick"):
+				var instance = bullet.instantiate()
+				add_child(instance)
 	else:
 		$Sprite.stop()
 	

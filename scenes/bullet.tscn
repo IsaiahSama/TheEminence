@@ -155,7 +155,7 @@ script = ExtResource("1_2kbow")
 [node name="BulletSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_25ay8")
-animation = &"hit"
+animation = &"shot"
 script = SubResource("GDScript_xo4gi")
 
 [node name="Area2D" type="Area2D" parent="."]
