@@ -1,7 +1,7 @@
 extends Node2D
-var speed = 0
-var damage = 0
-var health = 0
+var speed = 80
+var damage = 5
+var health = 3
 
 # Called when the node enters the scene tree for the first time.
 var rng = RandomNumberGenerator.new()
