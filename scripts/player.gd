@@ -46,7 +46,8 @@ func ascend(stats):
 	power = stats[2]
 	
 	$"PlayerSprite".play("ascend")
-	$"HUD".set_stats(max_health, range, power)
+	$"HUD".set_stats(health, range, power)
+	$"HUD".update_life(health)
 	await $"PlayerSprite".animation_finished
 	damaged = false
 	$"PlayerSprite".play("default")
