@@ -1,7 +1,11 @@
 extends Node2D
 var speed = 80
-var damage = 5
-var health = 3
+var damage: int
+var range: int
+var health: int 
+var stats: Array
+
+signal miniboss_slain
 
 # Called when the node enters the scene tree for the first time.
 var rng = RandomNumberGenerator.new()
@@ -10,6 +14,12 @@ var player_in_contact = false
 
 func _ready():
 	get_node("Body").self_modulate = Color8(rng.randi_range(0, 255),rng.randi_range(0, 255), rng.randi_range(0, 255))
+
+func set_stats(stats_array):
+	stats = stats_array
+	health = stats[0]
+	range = stats[1]
+	damage = stats[2]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -39,53 +49,5 @@ func _on_area_2d_area_exited(area):
 			
 func hurt():
 	health -= 1
-
-func cloneSystem():
-	# Table of Options and Build Values 
-	var Hlow: int = 5
-	var Hmed: int = 10
-	var Hhigh: int = 15
-
-	var Rlow: int = 5
-	var Rmed: int = 10
-	var Rhigh: int = 15
-
-	var Plow: int = 5
-	var Pmed: int = 10
-	var Phigh: int = 15
-
-	var HSelect = 0
-	var RSelect = 0
-	var PSelect = 0
-
-	# Health 
-	var HealthTable: Array = [Hlow, Hmed, Hhigh]
-
-	# Range 
-	var RangeTable: Array = [Rlow, Rmed, Rhigh]
-
-	#Power
-	var PowerTable: Array = [Plow, Pmed, Phigh]
-
-	# Generate Color to add to A and B based off HSV system
-	# Color.pickRandom(0-1, 0-1, 0-1, 0-1) 
-
-	#Make two Clones with stats 
-	var BuildA: Array = [HealthTable.pick_random(), RangeTable.pick_random(), PowerTable.pick_random()]
-	var BuildB: Array = [HealthTable.pick_random(), RangeTable.pick_random(), PowerTable.pick_random() ]
-
-	# The Selected Player Stats
-	var BuildSelect: Array = [HSelect,RSelect,PSelect]
-
-	#Test Array Works 
-	print(BuildA[0] + "," + BuildA[1] + "," + BuildA[2]) 
-	print(BuildB[0] + "," + BuildB[1] + "," + BuildB[2]) 
-	print(BuildSelect[0] + "," + BuildSelect[1] + "," + BuildSelect[2]) 
-
-	#Check if A = B if so reroll 
-	##if BuildA[0] == BuildB[0]
-	var ReplacementBuild: Array = [HealthTable.pick_random(), RangeTable.pick_random(), PowerTable.pick_random()]
-	var Unselected: Array = []
-
-	#Add Unselected to Arraylist and check agaisnt A and B
-	var RemovedCombo: Array = [Unselected]
+	if health <= 0:
+		miniboss_slain.emit(self)

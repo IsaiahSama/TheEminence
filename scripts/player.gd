@@ -39,6 +39,7 @@ func _process(delta):
 		death()
 		
 func ascend(stats):
+	damaged = true
 	max_health = stats[0]
 	health = max_health
 	range = stats[1]
@@ -46,8 +47,13 @@ func ascend(stats):
 	
 	$"PlayerSprite".play("ascend")
 	$"HUD".set_stats(max_health, range, power)
+	await $"PlayerSprite".animation_finished
+	damaged = false
 	$"PlayerSprite".play("default")
-	
+	print("New stats for player:")
+	print("Health:", health)
+	print("Range:", range)
+	print("Power:", power)
 	
 func death():
 	dead = true
@@ -57,7 +63,7 @@ func death():
 func hurt(damage,knockback,direction):
 	if not damaged and not dead:
 		health -= damage
-		print(health)
+		print("Current Health: ", health)
 		$"HUD".update_life(health)
 		position += Vector2.RIGHT.rotated(direction) * (70*knockback)
 		$PlayerSprite.play("damage")
