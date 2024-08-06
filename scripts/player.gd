@@ -60,6 +60,8 @@ func death():
 	dead = true
 	$PlayerSprite.play("death")
 	timer.start()
+	#await timer.timeout
+	#TODO: End Game
 
 func hurt(damage,knockback,direction):
 	if not damaged and not dead:
