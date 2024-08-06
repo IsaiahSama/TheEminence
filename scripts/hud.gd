@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-var heart_sprite = preload("res://scenes/heart.tscn")
+var heart_sprite = preload("res://scenes/UI/heart.tscn")
+var stat_texture_node = preload("res://scenes/UI/stat_texture.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,4 +36,13 @@ func update_life(health):
 	
 	for i in range(health, hearts.size()):
 		hearts[i].get_node("heart").play("Dead")
+		
+func set_stats(max_health, range, power):
+	var life_texture = $"StatUI/LifeTexture"
+	var range_texture = $"StatUI/RangeTexture"
+	var pow_texture = $"StatUI/PowTexture"
+	
+	life_texture.size = Vector2(16 * (max_health - 2), 16)
+	range_texture.size = Vector2(16 * range, 16)
+	pow_texture.size = Vector2(16 * power, 16)
 

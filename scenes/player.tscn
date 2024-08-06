@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/PlayerSprite.gd" id="3_7p5gm"]
 [ext_resource type="Texture2D" uid="uid://k287vw31ac0i" path="res://assets/Weapons/blaster.png" id="4_8ott2"]
 [ext_resource type="Script" path="res://scripts/BlasterSprite.gd" id="5_cmlvg"]
-[ext_resource type="PackedScene" uid="uid://catkf406knd86" path="res://scenes/hud.tscn" id="6_lgrek"]
+[ext_resource type="PackedScene" uid="uid://catkf406knd86" path="res://scenes/UI/hud.tscn" id="6_lgrek"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_arltn"]
 atlas = ExtResource("1_pkma8")

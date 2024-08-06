@@ -5,12 +5,11 @@ signal frameChange(newFrame)
 var speed = 400
 var max_health = 5
 var health = max_health
-var power = 3
-var range = 3
+var power = 1
+var range = 2
 var timer = Timer.new()
 var damaged = false
 var dead = false
-
 
 func _ready():
 	add_child(timer)
@@ -18,6 +17,7 @@ func _ready():
 	timer.one_shot = false
 	#timer.timeout.connect(_on_timer_timeout)
 	$"HUD".set_life(max_health)
+	$"HUD".set_stats(max_health, range, power)
 
 func _process(delta):
 	var velocity = Vector2.ZERO
@@ -38,13 +38,12 @@ func _process(delta):
 	if health <= 0:
 		death()
 	
-	
 func death():
 	dead = true
 	$PlayerSprite.play("death")
 	timer.start()
+
 	await timer.timeout
-	#end game
 
 func hurt(damage,knockback,direction):
 	if not damaged and not dead:
@@ -58,7 +57,6 @@ func hurt(damage,knockback,direction):
 		await timer.timeout
 		damaged = false
 		$PlayerSprite.play("default")
-	
 
 func playerLook():
 	var facingAngle = position.angle_to_point(get_viewport().get_mouse_position())
