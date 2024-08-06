@@ -80,7 +80,6 @@ func _on_area_2d_area_entered(area):
 func _on_area_2d_area_exited(area):
 	if not player.dead:
 		player_in_contact = false
-		
 
 
 func hurt():

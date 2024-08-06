@@ -1,10 +1,64 @@
-[gd_scene load_steps=22 format=3 uid="uid://bachkvoi41w6"]
+[gd_scene load_steps=37 format=3 uid="uid://bachkvoi41w6"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_khmp6"]
 [ext_resource type="Texture2D" uid="uid://c1wlecw1478l" path="res://assets/player.png" id="1_pkma8"]
+[ext_resource type="Texture2D" uid="uid://dh3uwa1lrgbma" path="res://assets/player_ascend.png" id="2_yfg2g"]
 [ext_resource type="Script" path="res://scripts/PlayerSprite.gd" id="3_7p5gm"]
 [ext_resource type="Texture2D" uid="uid://k287vw31ac0i" path="res://assets/Weapons/blaster.png" id="4_8ott2"]
 [ext_resource type="Script" path="res://scripts/BlasterSprite.gd" id="5_cmlvg"]
+[ext_resource type="PackedScene" uid="uid://catkf406knd86" path="res://scenes/UI/hud.tscn" id="6_lgrek"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5lmy"]
+atlas = ExtResource("2_yfg2g")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrujm"]
+atlas = ExtResource("2_yfg2g")
+region = Rect2(17, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_koafa"]
+atlas = ExtResource("2_yfg2g")
+region = Rect2(34, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtof1"]
+atlas = ExtResource("2_yfg2g")
+region = Rect2(51, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32l2c"]
+atlas = ExtResource("2_yfg2g")
+region = Rect2(68, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11212"]
+atlas = ExtResource("2_yfg2g")
+region = Rect2(85, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssarh"]
+atlas = ExtResource("2_yfg2g")
+region = Rect2(102, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c38j6"]
+atlas = ExtResource("2_yfg2g")
+region = Rect2(119, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5oih"]
+atlas = ExtResource("2_yfg2g")
+region = Rect2(136, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rjwu"]
+atlas = ExtResource("2_yfg2g")
+region = Rect2(153, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g68y4"]
+atlas = ExtResource("2_yfg2g")
+region = Rect2(170, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rfsw"]
+atlas = ExtResource("2_yfg2g")
+region = Rect2(187, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m01io"]
+atlas = ExtResource("2_yfg2g")
+region = Rect2(204, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_arltn"]
 atlas = ExtResource("1_pkma8")
@@ -28,6 +82,50 @@ region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qt7v7"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5lmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrujm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_koafa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtof1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32l2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11212")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssarh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c38j6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5oih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rjwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g68y4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rfsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m01io")
+}],
+"loop": false,
+"name": &"ascend",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_arltn")
@@ -58,7 +156,7 @@ animations = [{
 "duration": 1.0,
 "texture": null
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 10.0
 }, {
@@ -155,6 +253,8 @@ script = ExtResource("1_khmp6")
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qt7v7")
+animation = &"ascend"
+autoplay = "default"
 script = ExtResource("3_7p5gm")
 
 [node name="BlasterSprite" type="AnimatedSprite2D" parent="PlayerSprite"]
@@ -171,6 +271,8 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, 1)
 shape = SubResource("CapsuleShape2D_411bk")
+
+[node name="HUD" parent="." instance=ExtResource("6_lgrek")]
 
 [connection signal="frameChange" from="." to="PlayerSprite" method="_on_player_frame_change"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

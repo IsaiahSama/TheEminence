@@ -3,18 +3,21 @@ extends Node2D
 signal frameChange(newFrame)
 
 var speed = 400
-var health = 5
-var power = 3
-var range = 3
+var max_health = 5
+var health = max_health
+var power = 1
+var range = 2
 var timer = Timer.new()
 var damaged = false
 var dead = false
-
 
 func _ready():
 	add_child(timer)
 	timer.wait_time = 0.5
 	timer.one_shot = false
+	#timer.timeout.connect(_on_timer_timeout)
+	$"HUD".set_life(max_health)
+	$"HUD".set_stats(max_health, range, power)
 
 func _process(delta):
 	var velocity = Vector2.ZERO
@@ -34,19 +37,37 @@ func _process(delta):
 	
 	if health <= 0:
 		death()
+		
+func ascend(stats):
+	damaged = true
+	max_health = stats[0]
+	health = max_health
+	range = stats[1]
+	power = stats[2]
 	
+	$"PlayerSprite".play("ascend")
+	$"HUD".set_stats(health, range, power)
+	$"HUD".update_life(health)
+	await $"PlayerSprite".animation_finished
+	damaged = false
+	$"PlayerSprite".play("default")
+	print("New stats for player:")
+	print("Health:", health)
+	print("Range:", range)
+	print("Power:", power)
 	
 func death():
 	dead = true
 	$PlayerSprite.play("death")
 	timer.start()
-	await timer.timeout
+	#await timer.timeout
 	#TODO: End Game
 
 func hurt(damage,knockback,direction):
 	if not damaged and not dead:
 		health -= damage
-		print(health)
+		print("Current Health: ", health)
+		$"HUD".update_life(health)
 		position += Vector2.RIGHT.rotated(direction) * (70*knockback)
 		$PlayerSprite.play("damage")
 		timer.start()
@@ -54,7 +75,6 @@ func hurt(damage,knockback,direction):
 		await timer.timeout
 		damaged = false
 		$PlayerSprite.play("default")
-	
 
 func playerLook():
 	var facingAngle = position.angle_to_point(get_viewport().get_mouse_position())

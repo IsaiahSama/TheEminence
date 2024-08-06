@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://catkf406knd86"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_2ilhb"]
+[ext_resource type="Texture2D" uid="uid://djb7b2ycdnhrg" path="res://assets/UI/build_screen_base.png" id="1_4xy6e"]
+[ext_resource type="Texture2D" uid="uid://cclxsvv5qm4bj" path="res://assets/UI/heart_ui.png" id="3_0hj6j"]
+[ext_resource type="Texture2D" uid="uid://n6x5emc5trss" path="res://assets/UI/range_ui.png" id="4_jeoay"]
+[ext_resource type="Texture2D" uid="uid://b0uyiubsk2gl3" path="res://assets/UI/pow_ui.png" id="5_e1ydi"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_2ilhb")
+
+[node name="Hearts" type="HBoxContainer" parent="."]
+offset_left = 32.0
+offset_top = 28.0
+offset_right = 202.0
+offset_bottom = 60.0
+size_flags_horizontal = 3
+
+[node name="StatUI" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.470588)
+texture_filter = 1
+offset_left = 990.0
+offset_top = 485.0
+offset_right = 1150.0
+offset_bottom = 645.0
+texture = ExtResource("1_4xy6e")
+
+[node name="LifeTexture" type="TextureRect" parent="StatUI"]
+texture_repeat = 2
+layout_mode = 2
+offset_left = 89.0
+offset_top = 17.0
+offset_right = 105.0
+offset_bottom = 33.0
+texture = ExtResource("3_0hj6j")
+stretch_mode = 1
+
+[node name="RangeTexture" type="TextureRect" parent="StatUI"]
+texture_repeat = 2
+layout_mode = 2
+offset_left = 91.0
+offset_top = 66.0
+offset_right = 107.0
+offset_bottom = 82.0
+texture = ExtResource("4_jeoay")
+stretch_mode = 1
+
+[node name="PowTexture" type="TextureRect" parent="StatUI"]
+texture_repeat = 2
+layout_mode = 2
+offset_left = 90.0
+offset_top = 115.0
+offset_right = 106.0
+offset_bottom = 131.0
+texture = ExtResource("5_e1ydi")
+stretch_mode = 1
