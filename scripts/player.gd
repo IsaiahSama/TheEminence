@@ -37,13 +37,22 @@ func _process(delta):
 	
 	if health <= 0:
 		death()
+		
+func ascend(stats):
+	max_health = stats[0]
+	health = max_health
+	range = stats[1]
+	power = stats[2]
+	
+	$"PlayerSprite".play("ascend")
+	$"HUD".set_stats(max_health, range, power)
+	$"PlayerSprite".play("default")
+	
 	
 func death():
 	dead = true
 	$PlayerSprite.play("death")
 	timer.start()
-
-	await timer.timeout
 
 func hurt(damage,knockback,direction):
 	if not damaged and not dead:
