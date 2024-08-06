@@ -25,8 +25,22 @@ func _process(delta):
 			
 			direction = direction.normalized()
 			position += direction * speed * delta
+			
+func _on_area_2d_area_entered(area):
+	if not player.dead:
+		if area.collision_layer == 2:
+			hurt()
+		if area.collision_layer == 1:
+			player_in_contact = true
+			
+func _on_area_2d_area_exited(area):
+	if not player.dead:
+		player_in_contact = false
+			
+func hurt():
+	health -= 1
 
-func cloneSystem(delta):
+func cloneSystem():
 	# Table of Options and Build Values 
 	var Hlow: int = 5
 	var Hmed: int = 10

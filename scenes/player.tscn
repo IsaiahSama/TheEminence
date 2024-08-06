@@ -253,7 +253,7 @@ script = ExtResource("1_khmp6")
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qt7v7")
-animation = &"ascend"
+autoplay = "default"
 script = ExtResource("3_7p5gm")
 
 [node name="BlasterSprite" type="AnimatedSprite2D" parent="PlayerSprite"]
